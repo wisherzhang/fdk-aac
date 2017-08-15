@@ -253,7 +253,15 @@ void CBlock_ScaleSpectralData(CAacDecoderChannelInfo *pAacDecoderChannelInfo, Sa
       for (band=0; band < max_band; band++)
       {
         int scale = SpecScale_window - pSfbScale[window*16+band];
-        if (scale)
+        if (scale >= 32)
+        {
+          int max_index = BandOffsets[band+1];
+          for (int index = BandOffsets[band]; index < max_index; index++)
+          {
+            pSpectrum[index] = 0;
+          }
+        }
+        else if (scale)
         {
           /* following relation can be used for optimizations: (BandOffsets[i]%4) == 0 for all i */
           int max_index = BandOffsets[band+1];
