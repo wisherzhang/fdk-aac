@@ -1,5 +1,5 @@
 NDK_HOME=/home/wisher/android-ndk-r12b
-ANDROID_API=android-21  
+ANDROID_API=android-19  
   
 SYSROOT=$NDK_HOME/platforms/$ANDROID_API/arch-arm  
   
